@@ -22,7 +22,7 @@ let stringDuplicate = stringArray.reduce((prev, cur) => {
 
 console.log(stringDuplicate);
 
-//დავალება 3 ----- ვერ გავაკეთე
+//დავალება 3
 
 class Car {
   constructor(brand, model) {
@@ -31,24 +31,48 @@ class Car {
     this.speed = 0;
     this.motion = "The car is not moving";
   }
-  outputText = () => {
-    console.log(
-      `მანქანა ${this.brand} ${this.model} მოძრაობს ${this.speed} კმ/სთ სიჩქარით და სტატუსია: ${this.motion}`
-    );
+  check_motion() {
+    if (this.speed > 0) {
+      this.motion = "The car is moving";
+    } else {
+      this.motion = "The car is not moving";
+    }
+  }
+
+  accelerate(speed) {
+    this.speed += speed;
+    this.check_motion();
+  }
+
+  brake(speed) {
+    this.speed -= speed;
+    if (this.speed < 0) {
+      this.speed == 0;
+    }
+    this.check_motion();
+  }
+
+  emergency_brake() {
+    this.speed = 0;
+    this.check_motion();
+  }
+
+  status = () => {
+    return `მანქანა ${this.brand} ${this.model} მოძრაობს ${this.speed} კმ/სთ სიჩქარით და სტატუსია: ${this.motion}`;
   };
 }
 
-function check_motion() {
-  if (this.speed > 0) {
-    return (this.motion = "The car is moving");
-  } else {
-    return (this.motion = "The car is not moving");
-  }
-}
-console.log(check_motion());
+let newCar = new Car("Ford", "Mustang");
 
-const newCar = new Car("Ford", "Mustang");
+console.log(newCar.status());
 
-console.log(newCar);
+newCar.accelerate(60);
+console.log(newCar.status());
+
+newCar.brake(30);
+console.log(newCar.status());
+
+newCar.emergency_brake();
+console.log(newCar.status());
 
 //დავალება 4 ---- ვერ გავაკეთე
